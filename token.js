@@ -1468,6 +1468,41 @@ const APP_VERSION = "1.9";
             </div>
           </div>
 
+          <div class="token-data-item">
+            <div class="token-info-section">
+              <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:8px;">
+                <p><span class="token-key">WA Notifier:</span></p>
+                <label class="switch">
+                  <input type="checkbox" id="wa-notifier-toggle" ${
+                    localStorage.getItem("wa_notifier_enabled") === "true" ? "checked" : ""
+                  }>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center;">
+                <input id="wa-notifier-phone" placeholder="Nomor WhatsApp (62xxxxxxxxxx)" style="width:100%;padding:8px;border-radius:6px;border:1px solid #3a3a3a;background:#1e1e1e;color:#fff;" value="${
+                  localStorage.getItem("wa_notifier_phone") || ""
+                }" />
+                <button id="wa-notifier-test" class="token-button" style="white-space:nowrap;">
+                  <i class="fas fa-paper-plane"></i> Test
+                </button>
+              </div>
+              <div style="margin-top:8px;">
+                <input id="wa-notifier-webhook" placeholder="n8n Webhook URL" style="width:100%;padding:8px;border-radius:6px;border:1px solid #3a3a3a;background:#1e1e1e;color:#fff;" value="${
+                  localStorage.getItem("wa_notifier_webhook") || ""
+                }" />
+              </div>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <label style="display:flex; align-items:center; gap:8px;">
+                  <input type="checkbox" id="wa-notifier-incomplete-toggle" ${
+                    localStorage.getItem("wa_notify_incomplete") !== "false" ? "checked" : ""
+                  } />
+                  <span class="token-key">Kirim pengingat tugas belum selesai</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
 
           <div class="token-data-item version-info">
             <div class="token-info-section">
@@ -1600,6 +1635,62 @@ const APP_VERSION = "1.9";
           console.error(
             "showApiKeyPopup function not found. Make sure apiKeyManager.js is loaded."
           );
+        }
+      });
+    }
+
+    // WA Notifier handlers
+    const waToggle = document.getElementById("wa-notifier-toggle");
+    const waPhone = document.getElementById("wa-notifier-phone");
+    const waWebhook = document.getElementById("wa-notifier-webhook");
+    const waTest = document.getElementById("wa-notifier-test");
+    const waIncomplete = document.getElementById("wa-notifier-incomplete-toggle");
+
+    if (waToggle) {
+      waToggle.addEventListener("change", function() {
+        localStorage.setItem("wa_notifier_enabled", this.checked);
+      });
+    }
+
+    if (waPhone) {
+      waPhone.addEventListener("change", function() {
+        localStorage.setItem("wa_notifier_phone", this.value.trim());
+      });
+    }
+
+    if (waWebhook) {
+      waWebhook.addEventListener("change", function() {
+        localStorage.setItem("wa_notifier_webhook", this.value.trim());
+      });
+    }
+
+    if (waIncomplete) {
+      waIncomplete.addEventListener("change", function() {
+        localStorage.setItem("wa_notify_incomplete", this.checked);
+      });
+    }
+
+    if (waTest) {
+      waTest.addEventListener("click", async function() {
+        try {
+          const enabled = localStorage.getItem("wa_notifier_enabled") === "true";
+          const phone = (localStorage.getItem("wa_notifier_phone") || "").trim();
+          const url = (localStorage.getItem("wa_notifier_webhook") || "").trim();
+          if (!enabled) return showPopupMessage("WA Notifier nonaktif", "error");
+          if (!phone || !url) return showPopupMessage("Isi nomor & webhook", "error");
+
+          const payload = {
+            type: "test",
+            phone,
+            message: `Tes pengingat Mentari Mod untuk ${tokenInfo.fullname} (${tokenInfo.username})`,
+            timestamp: new Date().toISOString()
+          };
+
+          await fetch(url, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(payload)});
+          showPopupMessage("Pesan tes dikirim", "success");
+        } catch (e) {
+          console.error(e);
+          showPopupMessage("Gagal kirim tes", "error");
         }
       });
     }
@@ -4283,6 +4374,9 @@ const APP_VERSION = "1.9";
       // Update notifications UI
       updateNotificationsUI();
 
+      // Notify WA (if enabled)
+      try { if (window.MentariNotifier && typeof window.MentariNotifier.onCourseDataUpdated === 'function') { window.MentariNotifier.onCourseDataUpdated(); } } catch (e) { console.warn('MentariNotifier hook error', e); }
+
       return data;
     } catch (error) {
       console.error(`Error fetching courses:`, error);
@@ -4312,6 +4406,7 @@ const APP_VERSION = "1.9";
         updateForumUI(courseDataList);
         updateStudentUI(courseDataList);
         updateNotificationsUI();
+        try { if (window.MentariNotifier && typeof window.MentariNotifier.onCourseDataUpdated === 'function') { window.MentariNotifier.onCourseDataUpdated(); } } catch (e) { console.warn('MentariNotifier hook error', e); }
       }
 
       return true;

@@ -42,7 +42,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["token.js", "apiKeyManager.js"],
+      "resources": ["token.js", "apiKeyManager.js", "notifier.js"],
       "matches": ["https://mentari.unpam.ac.id/*"],
       "exclude_matches": ["https://mentari.unpam.ac.id/login"]
     }

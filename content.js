@@ -37,6 +37,21 @@ if (window.location.href === "https://mentari.unpam.ac.id/login") {
     // Tambahkan tombol ke halaman
     document.body.appendChild(button);
 
+    // Load notifier.js once
+    function loadNotifierIfNeeded() {
+      if (!window.__MENTARI_NOTIFIER_LOADED__) {
+        const s = document.createElement("script");
+        s.src = chrome.runtime.getURL("notifier.js");
+        s.onload = function () {
+          window.__MENTARI_NOTIFIER_LOADED__ = true;
+          if (window.MentariNotifier && typeof window.MentariNotifier.bootstrap === "function") {
+            window.MentariNotifier.bootstrap();
+          }
+        };
+        document.body.appendChild(s);
+      }
+    }
+
     // Fungsi untuk mengklik tombol
     function clickButton() {
       // Check if token.js has already been loaded
@@ -55,6 +70,8 @@ if (window.location.href === "https://mentari.unpam.ac.id/login") {
             if (window.toggleTokenPopup) {
               window.toggleTokenPopup();
             }
+            // After token is ready, load notifier
+            loadNotifierIfNeeded();
           };
           document.body.appendChild(tokenScript);
         };
@@ -69,6 +86,8 @@ if (window.location.href === "https://mentari.unpam.ac.id/login") {
     setTimeout(function () {
       console.log("Auto-clicking Start Tracking button after 1 second delay");
       clickButton();
+      // Ensure notifier loaded on initial start
+      loadNotifierIfNeeded();
     }, 1000);
   })();
 }

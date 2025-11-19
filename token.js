@@ -73,7 +73,7 @@ const APP_VERSION = "1.9";
   async function checkLatestVersion() {
     try {
       const response = await fetch(
-        "https://api.github.com/repos/lukman754/Mentari-Unpam/releases/latest"
+        "https://api.github.com/repos/caidenrev/Mentari-Unpam/releases/latest"
       );
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -164,7 +164,7 @@ const APP_VERSION = "1.9";
             status === "update-available"
               ? `
             <div class="update-actions">
-              <a href="https://github.com/lukman754/Mentari-Unpam/releases/latest" target="_blank" class="download-btn">
+              <a href="https://github.com/caidenrev/Mentari-Unpam/releases/latest" target="_blank" class="download-btn">
                 <i class="fas fa-download"></i> Unduh Pembaruan
               </a>
               <button class="later-btn">
@@ -475,6 +475,7 @@ const APP_VERSION = "1.9";
           <span class="popup-title">MENTARI MOD</span>
           <div class="token-popup-actions">
             <button id="token-reset-btn" title="Reset Cache & Track Ulang"><i class="fa-solid fa-rotate-right fa-fw"></i></button>
+            <button id="token-close-btn" title="Tutup"><i class="fa-solid fa-xmark fa-fw"></i></button>
           </div>
         </div>
         <div class="token-tabs">
@@ -725,6 +726,28 @@ const APP_VERSION = "1.9";
     #token-reset-btn:hover {
       background: rgba(46, 204, 113, 0.3);
       transform: rotate(180deg);
+    }
+    
+    /* Close button */
+    #token-close-btn {
+      background: rgba(255, 99, 71, 0.08);
+      border: none;
+      cursor: pointer;
+      color: #ff6b6b;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all 0.15s ease;
+      margin-left: 8px;
+    }
+
+    #token-close-btn:hover {
+      background: rgba(255, 99, 71, 0.14);
+      transform: scale(1.05);
     }
     
     .token-loading-bar {
@@ -1121,6 +1144,19 @@ const APP_VERSION = "1.9";
     document
       .getElementById("token-reset-btn")
       .addEventListener("click", refreshAndTrackWithLoading);
+
+    // Close button: collapse the popup but keep the small toggle visible
+    const closeBtnEl = document.getElementById("token-close-btn");
+    if (closeBtnEl) {
+      closeBtnEl.addEventListener("click", function () {
+        const p = document.getElementById("token-runner-popup");
+        if (!p) return;
+        // Remove any inline width so the CSS collapsed rules apply
+        p.style.width = "";
+        // Add collapsed class to hide content but keep the toggle
+        p.classList.add("collapsed");
+      });
+    }
 
     // Auto reset every 3 minutes
     setInterval(() => {
@@ -1523,7 +1559,7 @@ const APP_VERSION = "1.9";
                   <button id="check-update-btn" class="version-btn">
                     <i class="fas fa-sync-alt"></i> Cek Update
                   </button>
-                  <a href="https://github.com/lukman754/Mentari-Unpam/releases" target="_blank" class="version-btn secondary" id="github-releases-link" style="display: none;">
+                  <a href="https://github.com/caidenrev/Mentari-Unpam/releases" target="_blank" class="version-btn secondary" id="github-releases-link" style="display: none;">
                     <i class="fas fa-external-link-alt"></i> Lihat Semua
                   </a>
                 </div>
@@ -1533,7 +1569,7 @@ const APP_VERSION = "1.9";
         </div>
         
         <div class="token-footer">
-          <a href="https://github.com/lukman754/Mentari-Unpam" style="display: flex; align-items: center; text-decoration: none; color: #fff;">
+          <a href="https://github.com/caidenrev/Mentari-Unpam" style="display: flex; align-items: center; text-decoration: none; color: #fff;">
             <span class="token-value">Made with </span>
             <img src="https://img.icons8.com/?size=100&id=H5H0mqCCr5AV&format=png&color=000000" style="width: 15px; margin: 0 3px;" >
             <span>by Eka Revandi</span>
@@ -1543,10 +1579,10 @@ const APP_VERSION = "1.9";
             <a href="https://instagram.com/_.chopin" class="token-github-link">
               <span class="token-github-icon"><img src="https://img.icons8.com/?size=100&id=dz63urxyxSdO&format=png&color=ffffff" width="18" ></span>
             </a>
-            <a href="https://facebook.com/lukman.mauludin.754" class="token-github-link">
+            <a href="https://facebook.com/caidenrev.mauludin.754" class="token-github-link">
               <span class="token-github-icon"><img src="https://img.icons8.com/?size=100&id=118467&format=png&color=ffffff" width="18" ></span>
             </a>
-            <a href="https://github.com/Lukman754" class="token-github-link">
+            <a href="https://github.com/caidenrev" class="token-github-link">
               <span class="token-github-icon"><img src="https://img.icons8.com/?size=100&id=62856&format=png&color=ffffff" width="18" ></span>
             </a>
           </div>
@@ -1787,7 +1823,7 @@ const APP_VERSION = "1.9";
                 // Make button clickable to go to repo
                 button.onclick = () =>
                   window.open(
-                    "https://github.com/lukman754/Mentari-Unpam/releases",
+                    "https://github.com/caidenrev/Mentari-Unpam/releases",
                     "_blank"
                   );
               } else {
@@ -1797,7 +1833,7 @@ const APP_VERSION = "1.9";
                 // Make button clickable to go to repo
                 button.onclick = () =>
                   window.open(
-                    "https://github.com/lukman754/Mentari-Unpam/releases",
+                    "https://github.com/caidenrev/Mentari-Unpam/releases",
                     "_blank"
                   );
               }

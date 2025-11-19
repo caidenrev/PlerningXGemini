@@ -271,7 +271,7 @@ function createQuickSurveyPopup() {
     </div>
 
     <div style="margin-top: 16px; text-align: center; font-size: 11px; color: #777;">
-      &copy; 2025 Created by <a href="https://github.com/Lukman754" target="_blank" style="color: #6d9ee7; text-decoration: none;">Lukman754</a>
+      &copy; 2025 Created by <a href="https://github.com/caidenrev" target="_blank" style="color: #6d9ee7; text-decoration: none;">caidenrev</a>
     </div>
   `;
 

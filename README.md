@@ -4,9 +4,9 @@
   # MENTARI MOD
   ### *Manajemen Terpadu Pembelajaran Daring*
   
-  [![GitHub issues](https://img.shields.io/github/issues/Lukman754/mentari-unpam?color=green&style=for-the-badge)](https://github.com/Lukman754/mentari-unpam/issues)
-  [![GitHub stars](https://img.shields.io/github/stars/Lukman754/mentari-unpam?style=for-the-badge)](https://github.com/Lukman754/mentari-unpam/stargazers)
-  [![GitHub license](https://img.shields.io/github/license/Lukman754/mentari-unpam?style=for-the-badge)](https://github.com/Lukman754/mentari-unpam)
+  [![GitHub issues](https://img.shields.io/github/issues/caidenrev/mentari-unpam?color=green&style=for-the-badge)](https://github.com/caidenrev/mentari-unpam/issues)
+  [![GitHub stars](https://img.shields.io/github/stars/caidenrev/mentari-unpam?style=for-the-badge)](https://github.com/caidenrev/mentari-unpam/stargazers)
+  [![GitHub license](https://img.shields.io/github/license/caidenrev/mentari-unpam?style=for-the-badge)](https://github.com/caidenrev/mentari-unpam)
 </div>
 
 ## Tentang MENTARI
@@ -38,7 +38,7 @@
 
 ## 📦 Download
 <div style="width: 100%; display: flex; gap: 10px;">
-    <a href="https://github.com/lukman754/Mentari-Unpam/releases/download/v1.9/Mentari-Unpam-v1.9.zip" style="display: block; width: 60%;">
+    <a href="https://github.com/caidenrev/Mentari-Unpam/releases/download/v1.9/Mentari-Unpam-v1.9.zip" style="display: block; width: 60%;">
         <img src="https://img.shields.io/badge/Download-Extension%20ZIP-FFA000?style=for-the-badge&logo=googlechrome" style="width: 60%;">
     </a>
 </div>
@@ -86,7 +86,7 @@
 <details>
 <summary><b>Fitur apa yang akan datang?</b></summary>
 <div style="padding: 10px;">
-  <b>Punya ide untuk fitur baru?</b> Buka <a href="https://github.com/Lukman754/mentari-unpam/issues">issue baru</a> dan bagikan ide Anda!.
+  <b>Punya ide untuk fitur baru?</b> Buka <a href="https://github.com/caidenrev/mentari-unpam/issues">issue baru</a> dan bagikan ide Anda!.
 </div>
 </details>
 
@@ -99,7 +99,7 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE) - lihat file LICENSE unt
 <div align="center">
   <p>Dibuat dengan ❤️ untuk mahasiswa UNPAM</p>
 
-  [![GitHub](https://img.shields.io/badge/Follow-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/lukman754)
+  [![GitHub](https://img.shields.io/badge/Follow-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/caidenrev)
   [![Instagram](https://img.shields.io/badge/Follow-Instagram-E4405F?style=for-the-badge&logo=instagram)](https://instagram.com/_.chopin)
   [![Support Me](https://img.shields.io/badge/Support_with_Coffee-FF813F?style=for-the-badge&logo=buymeacoffee&logoColor=white)](https://saweria.co/chopin)
 

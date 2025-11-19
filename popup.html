@@ -23,11 +23,29 @@
       button:hover {
         background: #0056b3;
       }
+      /* secondary/close button */
+      .secondary {
+        background: #6c757d;
+      }
+      .secondary:hover {
+        background: #5a6268;
+      }
     </style>
   </head>
   <body>
     <h3>Jalankan Token</h3>
     <button id="runToken">Jalankan</button>
+    <button id="closePopup" class="secondary" style="margin-top:8px">Tutup</button>
     <script src="script.js"></script>
+    <script>
+      (function(){
+        var btn = document.getElementById('closePopup');
+        if(btn){
+          btn.addEventListener('click', function(){
+            window.close();
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
